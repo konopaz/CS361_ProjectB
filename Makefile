@@ -10,5 +10,14 @@ Location.o: Location.cpp
 ProjectB.o: ProjectB.cpp
 	$(CPP) $(CPPFLAGS) -c ProjectB.cpp -o ProjectB.o
 
+UnitTests: UnitTests.o Location.o
+	$(CPP) $(CPPFLAGS) Location.o UnitTests.o -o UnitTests
+
+UnitTests.o: UnitTests.cpp
+	$(CPP) $(CPPFLAGS) -c UnitTests.cpp -o UnitTests.o
+
+test: UnitTests
+	UnitTests
+
 clean:
 	rm -f *.o ProjectB

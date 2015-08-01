@@ -3,9 +3,11 @@
 
 #include <string>
 
+using namespace::std;
+
 class Location {
     public:
-        std::string name;
+        string name;
         string telephone;
         string streetAddress;
         string city;
