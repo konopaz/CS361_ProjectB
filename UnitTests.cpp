@@ -1,10 +1,12 @@
 #include <iostream>
 #include "Location.h"
+#include "functions.h"
 
 using namespace::std;
 
 bool testLocationToString();
 bool testLocationDistance();
+bool testFindNearby();
 
 int main() {
 
@@ -15,6 +17,7 @@ int main() {
 
   success = testLocationToString() && success;
   success = testLocationDistance() && success;
+  success = testFindNearby() && success;
 
   cout << endl;
   if (success) {
@@ -101,4 +104,48 @@ bool testLocationToString() {
   cout << endl;
 
   return success;
+}
+
+bool testFindNearby(){
+
+    bool success = true;
+
+    cout << "Testing find_nearby()... ";
+
+    Location * loc = new Location();
+    loc->name = "Test Name";
+    loc->streetAddress = "1234 Some St";
+    loc->city = "Acme Falls";
+    loc->state = "CA";
+    loc->zip = "123456";
+
+    vector<Location> database = createDatabase();
+    vector<Location> matching = find_nearby(loc, database);
+
+    if(matching[0].streetAddress != "3332 Lancaster Dr NE"){
+        success = false;
+        cout << endl << "Element 1 of 5 does not match";
+    }
+    if(matching[1].streetAddress != "315 Lancaster Dr SE"){
+        success = false;
+        cout << endl << "Element 2 of 5 does not match";
+    }
+    if(matching[2].streetAddress != "2970 Commercial St SE"){
+        success = false;
+        cout << endl << "Element 3 of 5 does not match";
+    }
+    if(matching[3].streetAddress != "4080 River Road N"){
+        success = false;
+        cout << endl << "Element 4 of 5 does not match";
+    }
+    if(matching[4].streetAddress != "2108 NW 9th Street"){
+        success = false;
+        cout << endl << "Element 5 of 5 does not match";
+    }
+
+    if(success){
+        cout << "good to go.";
+    }
+
+    return success;
 }
