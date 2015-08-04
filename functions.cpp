@@ -1,4 +1,7 @@
+#include <iostream>
 #include "functions.h"
+
+using namespace::std;
 
 Location* prompt_user_for_location() {
 
@@ -19,41 +22,37 @@ Location* prompt_user_for_location() {
 
 vector<Location> find_nearby(Location* from, vector<Location> database) {
     vector<Location> matching;
-    int size = 0;
-    int search_radius = 50;
-    // ask for location
-    // store location
+    unsigned int search_radius = 50;
 
     // Search within 50 miles, copy into new vector, and sort by distance
-    for (int i = 0; i < database.size(); i++) {
+    for (unsigned int i = 0; i < database.size(); i++) {
         if (database[i].distance(from) <= search_radius) {
             matching.push_back(database[i]);
         }
     }
     // selection sort algorithm
-        int min;
-        Location temp;
-        for (int i = 0; i < matching.size()-1; i++) {
-            min = i;
+    unsigned int min;
+    Location temp;
+    for (unsigned int i = 0; i < matching.size()-1; i++) {
+        min = i;
 
-            for (int j= i + 1; j < matching.size(); j++) {
-                if(matching[j].distance(from) < matching[min].distance(from))
-                    min = j;
-            }
-
-            if(min != i) {
-                temp = matching[i];
-                matching[i] = matching[min];
-                matching[min] = temp;
-            }
-
+        for (unsigned int j = i + 1; j < matching.size(); j++) {
+            if(matching[j].distance(from) < matching[min].distance(from))
+                min = j;
         }
+
+        if(min != i) {
+            temp = matching[i];
+            matching[i] = matching[min];
+            matching[min] = temp;
+        }
+
+    }
 
     //Cut out everything but the closest 5
     if(matching.size() > 5){
         matching.erase(matching.begin()+5, matching.end());
     }
-
 
     // Return the vector
     return matching;
@@ -93,7 +92,7 @@ vector<Location> createDatabase() {
 
 
     Location loc3;
-    loc3.name = "O’Reilly Auto Parts";
+    loc3.name = "O'Reilly Auto Parts";
     loc3.telephone = "(503) 399-9969";
     loc3.streetAddress = "3863 Commercial St SE";
     loc3.city = "Salem";
@@ -133,7 +132,7 @@ vector<Location> createDatabase() {
     database.push_back(loc6);
 
     Location loc7;
-    loc7.name = "O’Reilly Auto Parts";
+    loc7.name = "O'Reilly Auto Parts";
     loc7.telephone = "(503) 390-7029";
     loc7.streetAddress = "4297 River Road N";
     loc7.city = "Keizer";
@@ -153,7 +152,7 @@ vector<Location> createDatabase() {
     database.push_back(loc8);
 
     Location loc9;
-    loc9.name = "O’Reilly Auto Parts";
+    loc9.name = "O'Reilly Auto Parts";
     loc9.telephone = "(503) 362-7477";
     loc9.streetAddress = "2727 Lancaster Dr NE";
     loc9.city = "Salem";
@@ -253,7 +252,7 @@ vector<Location> createDatabase() {
     database.push_back(loc18);
 
     Location loc19;
-    loc19.name = "O’Reilly Auto Parts";
+    loc19.name = "O'Reilly Auto Parts";
     loc19.telephone = "(503) 831-1279";
     loc19.streetAddress = "111 E Ellendale Ave";
     loc19.city = "Dallas";
@@ -283,7 +282,7 @@ vector<Location> createDatabase() {
     database.push_back(loc21);
 
     Location loc22;
-    loc22.name = "O’Reilly Auto Parts";
+    loc22.name = "O'Reilly Auto Parts";
     loc22.telephone = "(541) 258-1694";
     loc22.streetAddress = "2195 S Santiam Hwy";
     loc22.city = "Lebanon";
@@ -303,7 +302,7 @@ vector<Location> createDatabase() {
     database.push_back(loc23);
 
     Location loc24;
-    loc24.name = "O’Reilly Auto Parts";
+    loc24.name = "O'Reilly Auto Parts";
     loc24.telephone = "(541) 258-7400";
     loc24.streetAddress = "903 N 1st St";
     loc24.city = "Stayton";
@@ -313,7 +312,7 @@ vector<Location> createDatabase() {
     database.push_back(loc24);
 
     Location loc25;
-    loc25.name = "O’Reilly Auto Parts";
+    loc25.name = "O'Reilly Auto Parts";
     loc25.telephone = "(541) 367-2115";
     loc25.streetAddress = "1118 Main St";
     loc25.city = "Sweet Home";

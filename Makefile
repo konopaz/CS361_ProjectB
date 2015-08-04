@@ -1,8 +1,11 @@
 CPP = g++
 CPPFLAGS = -g -Wall
 
-ProjectB: ProjectB.o Location.o
-	$(CPP) $(CPPFLAGS) Location.o ProjectB.o -o ProjectB
+ProjectB: ProjectB.o Location.o functions.o
+	$(CPP) $(CPPFLAGS) functions.o Location.o ProjectB.o -o ProjectB
+
+functions.o: functions.cpp
+	$(CPP) $(CPPFLAGS) -c functions.cpp -o functions.o
 
 Location.o: Location.cpp
 	$(CPP) $(CPPFLAGS) -c Location.cpp -o Location.o
@@ -17,7 +20,7 @@ UnitTests.o: UnitTests.cpp
 	$(CPP) $(CPPFLAGS) -c UnitTests.cpp -o UnitTests.o
 
 test: UnitTests
-	UnitTests
+	./UnitTests
 
 clean:
-	rm -f *.o ProjectB
+	rm -f *.o ProjectB UnitTests

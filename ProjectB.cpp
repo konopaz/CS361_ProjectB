@@ -1,19 +1,10 @@
-/*#include <iostream>
+#include <iostream>
 #include <string>
 #include <vector>
-#include "Location.h"*/
+#include "Location.h"
 #include "functions.h"
 
 using namespace std;
-
-//Now stored in functions.h
-/*
-vector<Location> createDatabase();
-void print_results(Location*, vector<Location>);
-void find_nearby(Location*, vector<Location>);
-void print_location(Location);
-Location* prompt_user_for_location();
-*/
 
 int main() {
     int choice;
