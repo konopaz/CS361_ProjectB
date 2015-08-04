@@ -17,7 +17,7 @@ int main() {
         // Prompt for menu command
         cout << "Please choose a command: " << endl;
         cout << "1: Find nearby oil disposal locations" << endl;
-        //cout << "2: Go directly to the nearest oil disposal location" << endl;
+        cout << "2: Go directly to the nearest oil disposal location" << endl;
         //cout << "3: View Oil Disposal Checklist" << endl;
         cout << "4: Exit Application" << endl;
         cout << "Your choice: ";
@@ -30,7 +30,7 @@ int main() {
                 break;
             }
             case 2:
-                // Turn by turn function?
+                turnturn(0,0);
                 break;
             case 3:
                 // Checklist function
