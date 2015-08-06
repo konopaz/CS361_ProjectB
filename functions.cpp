@@ -28,9 +28,8 @@ Location* prompt_user_for_location() {
     return loc;
 }
 
-vector<Location> find_nearby(Location* from, vector<Location> database) {
+vector<Location> find_nearby(Location* from, vector<Location> database, unsigned int search_radius) {
     vector<Location> matching;
-    unsigned int search_radius = 50;
 
     // Search within 50 miles, copy into new vector, and sort by distance
     for (unsigned int i = 0; i < database.size(); i++) {
@@ -67,12 +66,15 @@ vector<Location> find_nearby(Location* from, vector<Location> database) {
 }
 
 void print_results(Location* from, vector<Location> matches) {
-
-    for(unsigned int i = 0; i < matches.size(); i++) {
-        cout << "Distance: ";
-        cout << matches[i].distance(from) << endl;
-        cout << matches[i].to_string();
-    }
+	if(matches.size() == 0) {
+		cout << "Sorry no matches found." << endl; 
+	} else {
+    	for(unsigned int i = 0; i < matches.size(); i++) {
+        	cout << "Distance: ";
+        	cout << matches[i].distance(from) << endl;
+        	cout << matches[i].to_string();
+    	}
+	}
 }
 
 vector<Location> createDatabase() {
