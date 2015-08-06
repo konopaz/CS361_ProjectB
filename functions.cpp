@@ -31,7 +31,7 @@ Location* prompt_user_for_location() {
 vector<Location> find_nearby(Location* from, vector<Location> database, unsigned int search_radius) {
     vector<Location> matching;
 
-    // Search within 50 miles, copy into new vector, and sort by distance
+    // Search within search radius, copy into new vector, and sort by distance
     for (unsigned int i = 0; i < database.size(); i++) {
         if (database[i].distance(from) <= search_radius) {
             matching.push_back(database[i]);
