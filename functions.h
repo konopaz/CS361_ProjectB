@@ -6,7 +6,7 @@
 
 vector<Location> createDatabase();
 void print_results(Location*, vector<Location>);
-vector<Location> find_nearby(Location*, vector<Location>);
+vector<Location> find_nearby(Location*, vector<Location>, unsigned int);
 void print_location(Location);
 Location* prompt_user_for_location();
 void turnturn(int locationnumber,int distance);
