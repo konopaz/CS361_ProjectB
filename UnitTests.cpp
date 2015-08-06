@@ -120,7 +120,7 @@ bool testFindNearby(){
     loc->zip = "123456";
 
     vector<Location> database = createDatabase();
-    vector<Location> matching = find_nearby(loc, database);
+    vector<Location> matching = find_nearby(loc, database, 50);
 
     if(matching[0].streetAddress != "3332 Lancaster Dr NE"){
         success = false;
