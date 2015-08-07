@@ -56,7 +56,7 @@ vector<Location> find_nearby(Location* from, vector<Location> database, unsigned
         	}
 
     	}
-    ]
+    }
 
     //Cut out everything but the closest 5
     if(matching.size() > 5){
@@ -312,27 +312,92 @@ vector<Location> createDatabase() {
 }
 
 void turnturn(int locationnumber,int distance) {
-	int range;
-	int floor;
 	int dcount;
 	int lr;
-	int locationnumber2; //used for testing
 	int used[100];
 	int dlist[100];
 	int num;
-	int distance2; //for testing
-	char entry='c';
 	srand(time(NULL));
-	string directions[] = {" ","Turn left onto Commercial St","Turn right onto Lancaster Dr","Turn left onto Commercial St","Turn left onto Commercial St","Turn right onto Turner Rd","Turn left onto North River Road","Turn left onto Salem-Dallas Hwy","Turn right on Lancaster Dr","Turn right onto Lancaster Dr","Turn left onto South East Deer Park Dr","Turn right onto Lancaster Dr","Turn left onto Montgomery St","Merge right onto Santiam Hwy","Turn right onto 9th street","Turn left onto Walnut Blvd","Turn right onto Coffin Butte Rd","Turn left onto south Third St","Turn right onto East Ellendale Ave","Merge left onto Kings Valley Hwy","Turn right onto South Santiam Hwy","Turn right onto South Santiam Hwy","Turn right onto South Santiam Hwy","Turn left onto North First Street","Turn right onto Main St","Destination will be on your left","Destination will be on your right","Turn left on North Maple Ave","Turn right on Market St","Turn Left on Stoneway Dr","Turn Right on Hwy 22","Turn Left on Plaza St","Turn right on Eola Dr","Turn left on Moores Way","Turn Left on Senate St","Turn right on Doaks Ferry Rd","Turn right on Belverde St","Turn right on Gehlar Rd","Turn right on Celveland Ave","Turn Left on Eisenhower Dr","Turn right on Dalke Ridge Dr","Turn left on Crestbrook Dr","Turn left on Brekenridge St","Turn Left on Horse Clover Dr","Turn right on Rainsong Dr","Turn left on Emerald Dr","Turn right on Grice Hilld Rd","Turn left on Orchard Heights Rd","Turn right on Eagle Crest Rd","Turn right on Timothy Dr","Turn right on Lockhart Dr","Turn left on Oakcrest Dr"};
 
 	cout << "Please enter location number \n";
-	cin >> locationnumber2;
+	cin >> locationnumber;
 	cout << "Please enter distance \n";
-	cin >> distance2;
+	cin >> distance;
+	dcount=distancemod(distance);
+	//50 50 chance of left or right
+	int x;
+	int y;
+	int unique=0;
+	lr=rand()%2+25;
+	num=rand()%43+28; //random directions number
+	for(x=0;x<dcount;x++) {
+		num=rand()%43+28;
+		while(unique<x) { //this is supposed to stop repeat directions but I think there is a flaw
+			unique=0;
+			num=rand()%43+28;
+			for (y=0;y<x;y++) {
+				if(num!=used[y]) {
+					unique++;
+				}
+			}
+		}
+		dlist[x]=num;
+		used[x]=num;
+		unique=0;
+	}
+	
+	dlist[x]=locationnumber; //second to last direction turns on street where location actually is
+	x++;
+	dlist[x]=lr; //says left or right
+	
+	printdirection(dlist,x);
+	
+	
+}
 
-	//sets up range for how many directions will be used
-	locationnumber=locationnumber2; //testing
-	distance=distance2; //testing
+void printdirection(int dlist[],int x)
+{
+	string directions[] = {" ","Commercial St","Lancaster Dr","Commercial St","Commercial St","Turner Rd","North River Road","Salem-Dallas Hwy","Lancaster Dr","Lancaster Dr","South East Deer Park Dr","Lancaster Dr","Montgomery St","Merge right onto Santiam Hwy","9th street","Walnut Blvd","Coffin Butte Rd","south Third St","East Ellendale Ave","Merge left onto Kings Valley Hwy","South Santiam Hwy","South Santiam Hwy","South Santiam Hwy","North First Street","Main St","Destination will be on your left","Destination will be on your right","North Maple Ave","Market St","Stoneway Dr","Hwy 22","Plaza St","Eola Dr","Moores Way","Senate St","Doaks Ferry Rd","Belverde St","Gehlar Rd","Celveland Ave","Eisenhower Dr","Dalke Ridge Dr","Crestbrook Dr","Brekenridge St","Horse Clover Dr","Rainsong Dr","Emerald Dr","Grice Hilld Rd","Orchard Heights Rd","Eagle Crest Rd","Timothy Dr","Lockhart Dr","Oakcrest Dr","Abbey Road","Smith Street","Abby Wood Ct","Adams Ridge","Albert Dr","Aldercrroft Heights","Almond Hill Ct","Altura Vista","Bean Ave","Beardem Dr","Beckwith Rd","Becky Ln","Beethoven Ln","Belblossom Dr","Clearview Dr","Comanche Trail","Comstock Mill Rd","Coporate Limit","Corcel Dr","Cove Lane Rd","Deerfield Rd","Del Monte Way","Delaware Trail","Dittos Ln","Englewood Ave","El Porton","Evergreen Ln","Farvue Ln","Fawmdale Dr","Fairview Plaza","Gillete Dr"};
+	int q=0;
+	char entry='c';
+	cout << "Now printing directions press any key button except q to print \n";
+	cout << "next direction to quit guidance press q \n";
+	while (q<=x&&entry!='q'){
+		
+		string ways=leftorright();
+		if (dlist[q]==26||dlist[q]==25)
+		{
+			cout << directions[dlist[q]]<< " ";
+		}
+		else
+		{
+			cout << ways << directions[dlist[q]]<< " ";
+		}
+		cin >> entry;
+		cout<< endl;
+		q++;
+	}
+}
+
+string leftorright()
+{
+	int temp=rand()%2;
+	string temp2;
+	if (temp==0)
+	{
+		temp2="Turn left onto ";
+	}
+	else
+	{
+		temp2="Turn right onto ";
+	}
+	return temp2;
+}
+//sets number of directions which is based off distance to target
+int distancemod(int distance)
+{
+	int range;
+	int floor;
 	if (distance<5) {
 		range=4;
 		floor=3;
@@ -351,54 +416,7 @@ void turnturn(int locationnumber,int distance) {
 	}
 	
 	//enters in how many directions will be used
-	dcount=rand()%range+1+floor;
-	//50 50 chance of left or right
-	lr=rand()%2+25;
-	int x;
-	int y;
-	int unique=0;
-	
-	num=rand()%23+28; //random directions number
-	for(x=0;x<dcount;x++) {
-		num=rand()%23+28;
-		while(unique<x) { //this is supposed to stop repeat directions but I think there is a flaw
-			num=rand()%23+28;
-			for (y=0;y<x;y++) {
-				if(num!=used[y]) {
-					unique++;
-				}
-			}
-		}
-		dlist[x]=num;
-		used[x]=num;
-		unique=0;
-	}
-	
-	dlist[x]=locationnumber; //second to last direction turns on street where location actually is
-	x++;
-	dlist[x]=lr; //says left or right
-	int q=0;
-	
-	cout << "Now printing directions press any key button except q to print \n";
-	cout << "next direction to quit guidance press q \n";
-	while (q<=x&&entry!='q'){
-		cout << directions[dlist[q]]<< " ";
-		cin >> entry;
-		cout<< endl;
-		q++;
-	}
-	/*
-	if(entry!='q')
-	{
-		cout << directions[locationnumber]<< " ";;
-		cin >> entry;
-	}
-	if(entry!='q')
-	{
-		cout << directions[lr]<< " ";;
-		cin >> entry;
-	}
-	*/
+	return rand()%range+1+floor;
 }
 
 void checklist() {
