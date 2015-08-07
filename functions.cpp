@@ -369,7 +369,7 @@ void turnturn(int locationnumber,int distance) {
 	} else if (distance<35) {
 		range=8;
 		floor=6;
-	} else []
+	} else {
 		range=10;
 		floor=6;
 	}
