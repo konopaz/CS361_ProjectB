@@ -19,9 +19,11 @@ int main() {
         cout << "1: Find nearby oil disposal locations" << endl;
         cout << "2: Go directly to the nearest oil disposal location" << endl;
         //cout << "3: View Oil Disposal Checklist" << endl;
-        cout << "4: Exit Application" << endl;
+        cout << "4: View current location" << endl; 
+        cout << "5: Exit Application" << endl;
         cout << "Your choice: ";
         cin >> choice;
+        cout << endl; 
 
         switch (choice) {
             case 1:{
@@ -38,9 +40,11 @@ int main() {
             case 3:
                 // Checklist function
                 break;
+            case 4: 
+                cout << home->to_string()<< endl;
         }
 
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
