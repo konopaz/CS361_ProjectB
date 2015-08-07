@@ -38,7 +38,7 @@ int main() {
                 turnturn(0,0);
                 break;
             case 3:
-                // Checklist function
+                checklist(); 
                 break;
             case 4: 
                 cout << home->to_string()<< endl;
