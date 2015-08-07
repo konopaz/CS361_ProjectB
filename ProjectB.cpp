@@ -27,7 +27,7 @@ int main() {
             case 1:{
                 unsigned int search_radius; 
                 cout << "Search Radius: "; 
-                getline(cin, search_radius); 
+                cin >> search_radius;  
                 vector<Location> matching = find_nearby(home, database, search_radius);
                 print_results(home, matching);
                 break;
