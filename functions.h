@@ -10,5 +10,6 @@ vector<Location> find_nearby(Location*, vector<Location>, unsigned int);
 void print_location(Location);
 Location* prompt_user_for_location();
 void turnturn(int locationnumber,int distance);
+void checklist(); 
 
 #endif // FUNCTIONS_H
