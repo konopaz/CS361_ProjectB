@@ -38,23 +38,25 @@ vector<Location> find_nearby(Location* from, vector<Location> database, unsigned
         }
     }
     // selection sort algorithm
-    unsigned int min;
-    Location temp;
-    for (unsigned int i = 0; i < matching.size()-1; i++) {
-        min = i;
+    if(!matching.empty()) {
+    	unsigned int min;
+    	Location temp;
+    	for (unsigned int i = 0; i < matching.size()-1; i++) {
+        	min = i;
 
-        for (unsigned int j = i + 1; j < matching.size(); j++) {
-            if(matching[j].distance(from) < matching[min].distance(from))
-                min = j;
-        }
+        	for (unsigned int j = i + 1; j < matching.size(); j++) {
+            	if(matching[j].distance(from) < matching[min].distance(from))
+                	min = j;
+        	}
 
-        if(min != i) {
-            temp = matching[i];
-            matching[i] = matching[min];
-            matching[min] = temp;
-        }
+        	if(min != i) {
+            		temp = matching[i];
+            		matching[i] = matching[min];
+            		matching[min] = temp;
+        	}
 
-    }
+    	}
+    ]
 
     //Cut out everything but the closest 5
     if(matching.size() > 5){
@@ -66,14 +68,14 @@ vector<Location> find_nearby(Location* from, vector<Location> database, unsigned
 }
 
 void print_results(Location* from, vector<Location> matches) {
-	if(matches.size() == 0) {
+	if(matches.empty()) {
 		cout << "Sorry no matches found." << endl; 
 	} else {
-    	for(unsigned int i = 0; i < matches.size(); i++) {
-        	cout << "Distance: ";
-        	cout << matches[i].distance(from) << endl;
-        	cout << matches[i].to_string();
-    	}
+    		for(unsigned int i = 0; i < matches.size(); i++) {
+        		cout << "Distance: ";
+        		cout << matches[i].distance(from) << endl;
+        		cout << matches[i].to_string();
+    		}
 	}
 }
 
@@ -87,7 +89,6 @@ vector<Location> createDatabase() {
     loc1.city = "Salem";
     loc1.state = "OR";
     loc1.zip = "97301";
-    //loc1.distance = 0;
     database.push_back(loc1);
 
     Location loc2;
@@ -97,7 +98,6 @@ vector<Location> createDatabase() {
     loc2.city = "Salem";
     loc2.state = "OR";
     loc2.zip = "97301";
-    //loc2.distance = 0;
     database.push_back(loc2);
 
 
@@ -108,7 +108,6 @@ vector<Location> createDatabase() {
     loc3.city = "Salem";
     loc3.state = "OR";
     loc3.zip = "97302";
-    //loc3.distance = 0;
     database.push_back(loc3);
 
     Location loc4;
@@ -118,7 +117,6 @@ vector<Location> createDatabase() {
     loc4.city = "Salem";
     loc4.state = "OR";
     loc4.zip = "97302";
-    //loc4.distance = 0;
     database.push_back(loc4);
 
     Location loc5;
@@ -128,7 +126,6 @@ vector<Location> createDatabase() {
     loc5.city = "Salem";
     loc5.state = "OR";
     loc5.zip = "97302";
-    //loc5.distance = 0;
     database.push_back(loc5);
 
     Location loc6;
@@ -138,7 +135,6 @@ vector<Location> createDatabase() {
     loc6.city = "Keizer";
     loc6.state = "OR";
     loc6.zip = "97303";
-    //loc6.distance = 0;
     database.push_back(loc6);
 
     Location loc7;
@@ -148,7 +144,6 @@ vector<Location> createDatabase() {
     loc7.city = "Keizer";
     loc7.state = "OR";
     loc7.zip = "97303";
-    //loc7.distance = 0;
     database.push_back(loc7);
 
     Location loc8;
@@ -158,7 +153,6 @@ vector<Location> createDatabase() {
     loc8.city = "Salem";
     loc8.state = "OR";
     loc8.zip = "97304";
-    //loc8.distance = 0;
     database.push_back(loc8);
 
     Location loc9;
@@ -168,7 +162,6 @@ vector<Location> createDatabase() {
     loc9.city = "Salem";
     loc9.state = "OR";
     loc9.zip = "97305";
-    //loc9.distance = 0;
     database.push_back(loc9);
 
     Location loc10;
@@ -178,7 +171,6 @@ vector<Location> createDatabase() {
     loc10.city = "Salem";
     loc10.state = "OR";
     loc10.zip = "97305";
-    //loc10.distance = 0;
     database.push_back(loc10);
 
     Location loc11;
@@ -188,7 +180,6 @@ vector<Location> createDatabase() {
     loc11.city = "Salem";
     loc11.state = "OR";
     loc11.zip = "97310";
-    //loc11.distance = 0;
     database.push_back(loc11);
 
     Location loc12;
@@ -198,7 +189,6 @@ vector<Location> createDatabase() {
     loc12.city = "Salem";
     loc12.state = "OR";
     loc12.zip = "97317";
-    //loc12.distance = 0;
     database.push_back(loc12);
 
     Location loc13;
@@ -207,8 +197,6 @@ vector<Location> createDatabase() {
     loc13.streetAddress = "1214 SE Montgomery St";
     loc13.city = "Albany";
     loc13.state = "OR";
-    loc13.zip = "97321";
-    //loc13.distance = 0;
     database.push_back(loc13);
 
     Location loc14;
@@ -218,7 +206,6 @@ vector<Location> createDatabase() {
     loc14.city = "Albany";
     loc14.state = "OR";
     loc14.zip = "97322";
-    //loc14.distance = 0;
     database.push_back(loc14);
 
     Location loc15;
@@ -228,7 +215,6 @@ vector<Location> createDatabase() {
     loc15.city = "Corvallis";
     loc15.state = "OR";
     loc15.zip = "97330";
-    //loc15.distance = 0;
     database.push_back(loc15);
 
     Location loc16;
@@ -238,7 +224,6 @@ vector<Location> createDatabase() {
     loc16.city = "Corvallis";
     loc16.state = "OR";
     loc16.zip = "97330";
-    //loc16.distance = 0;
     database.push_back(loc16);
 
     Location loc17;
@@ -248,7 +233,6 @@ vector<Location> createDatabase() {
     loc17.city = "Corvallis";
     loc17.state = "OR";
     loc17.zip = "97330";
-    //loc17.distance = 0;
     database.push_back(loc17);
 
     Location loc18;
@@ -258,7 +242,6 @@ vector<Location> createDatabase() {
     loc18.city = "Corvallis";
     loc18.state = "OR";
     loc18.zip = "97333";
-    //loc18.distance = 0;
     database.push_back(loc18);
 
     Location loc19;
@@ -268,7 +251,6 @@ vector<Location> createDatabase() {
     loc19.city = "Dallas";
     loc19.state = "OR";
     loc19.zip = "97338";
-    //loc19.distance = 0;
     database.push_back(loc19);
 
     Location loc20;
@@ -278,7 +260,6 @@ vector<Location> createDatabase() {
     loc20.city = "Dallas";
     loc20.state = "OR";
     loc20.zip = "97338";
-    //loc20.distance = 0;
     database.push_back(loc20);
 
     Location loc21;
@@ -288,7 +269,6 @@ vector<Location> createDatabase() {
     loc21.city = "Lebanon";
     loc21.state = "OR";
     loc21.zip = "97355";
-    //loc21.distance = 0;
     database.push_back(loc21);
 
     Location loc22;
@@ -298,7 +278,6 @@ vector<Location> createDatabase() {
     loc22.city = "Lebanon";
     loc22.state = "OR";
     loc22.zip = "97355";
-    //loc22.distance = 0;
     database.push_back(loc22);
 
     Location loc23;
@@ -308,7 +287,6 @@ vector<Location> createDatabase() {
     loc23.city = "Lebanon";
     loc23.state = "OR";
     loc23.zip = "97355";
-    //loc23.distance = 0;
     database.push_back(loc23);
 
     Location loc24;
@@ -318,7 +296,6 @@ vector<Location> createDatabase() {
     loc24.city = "Stayton";
     loc24.state = "OR";
     loc24.zip = "97383";
-    //loc24.distance = 0;
     database.push_back(loc24);
 
     Location loc25;
@@ -328,7 +305,6 @@ vector<Location> createDatabase() {
     loc25.city = "Sweet Home";
     loc25.state = "OR";
     loc25.zip = "97386";
-    //loc25.distance = 0;
     database.push_back(loc25);
 
 
