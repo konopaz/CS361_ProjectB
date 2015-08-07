@@ -400,3 +400,22 @@ void turnturn(int locationnumber,int distance) {
 	}
 	*/
 }
+
+void checklist() {
+    int step = 0, total_steps = 7;
+    char entry;
+    string check_list[] = { "1. Be sure oil is cool before transferring to empty jugs.",
+        "2. Carefully transfer oil from oil drain catch pan to empty jug.",
+        "3. Screw the cap onto the jug and make absolutely sure it is on tight.",
+        "4. For extra security, you can slip the jug into a plastic trash bag and twist that closed with a tie-twist.",
+        "5. Get an old cardboard box, put a layer of newspaper down on the bottom. Put the jug in there.",
+        "6. The ideal area to place the oil while driving is on the passenger floor.\n Find a flat and secure area for driving",
+        "7. Bring to the correct oil disposal location"};
+    cout << "Press any key to advance onto the checklist, hit q at any time to quit\n";
+	while (step < total_steps &&entry!='q'){
+		cout << check_list[step]<< " ";
+		cin >> entry;
+		cout<< endl;
+		step++;
+	}
+}
