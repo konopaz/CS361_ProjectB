@@ -5,6 +5,7 @@
 #include "Location.h"
 
 vector<Location> createDatabase();
+vector<Location> createDatabase2();
 void print_results(Location*, vector<Location>);
 vector<Location> find_nearby(Location*, vector<Location>, unsigned int);
 void print_location(Location);
