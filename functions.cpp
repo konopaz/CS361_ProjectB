@@ -332,7 +332,7 @@ void turnturn(int locationnumber,int distance) {
 	num=rand()%43+28; //random directions number
 	for(x=0;x<dcount;x++) {
 		num=rand()%43+28;
-		while(unique<x) { //this is supposed to stop repeat directions but I think there is a flaw
+		while(unique<x) { 
 			unique=0;
 			num=rand()%43+28;
 			for (y=0;y<x;y++) {

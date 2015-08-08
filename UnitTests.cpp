@@ -1,4 +1,6 @@
 #include <iostream>
+#include <math.h> 
+#include <stdlib.h>
 #include "Location.h"
 #include "functions.h"
 
@@ -7,6 +9,8 @@ using namespace::std;
 bool testLocationToString();
 bool testLocationDistance();
 bool testFindNearby();
+bool testunique();
+bool testdistancemod();
 
 int main() {
 
@@ -18,6 +22,8 @@ int main() {
   success = testLocationToString() && success;
   success = testLocationDistance() && success;
   success = testFindNearby() && success;
+  success = testunique() && success;
+  success = testdistancemod() && success;
 
   cout << endl;
   if (success) {
@@ -146,6 +152,70 @@ bool testFindNearby(){
     if(success){
         cout << "good to go.";
     }
-
+	cout << endl;
     return success;
 }
+//test to make sure distance mod returns number in correct range
+bool testdistancemod()
+{
+	bool success=true;
+	int distance=25;
+	cout << "Testing Distance Mod ";
+	int result=distancemod(distance); //should return between 6-14
+	if (result<6||result>14)
+	{
+		success=false;
+	}
+	if(success){
+        cout << "good to go.";
+    }
+	cout << endl;
+	return success;
+}
+//tests to make sure device for making unique directions has no repeats
+bool testunique()
+{
+	int used[100];
+	int dlist[100];
+	int dcount=15;
+	bool success=true;
+	int x;
+	int y;
+	int unique;
+	int num;
+	cout << "Testing unique number ";
+	for(x=0;x<dcount;x++) {
+		num=rand()%43+28;
+		while(unique<x) { 
+			unique=0;
+			num=rand()%43+28;
+			for (y=0;y<x;y++) {
+				if(num!=used[y]) {
+					unique++;
+				}
+			}
+		}
+		dlist[x]=num;
+		used[x]=num;
+		unique=0;
+	}
+	int temp;
+	for (x=0;x<dcount;x++)
+	{
+		temp=dlist[x];
+		for(y=0;y<dcount;y++)
+		{
+			if(temp==dlist[y]&&x!=y)
+			{
+				success=false;
+			}
+		}
+	}
+	 if(success){
+        cout << "good to go.";
+    }
+	cout << endl;
+	return success;
+}
+	
+	
