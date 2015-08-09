@@ -491,7 +491,7 @@ void checklist() {
     auth5.zip = "97330";
     database.push_back(auth5);
 	
-	 Location auth6;
+	Location auth6;
     auth6.name = "Benton County Natural Areas & Parks Department";
     auth6.telephone = "(541) 766-6781";
     auth6.streetAddress = "360 SW Avery Ave";
@@ -499,6 +499,87 @@ void checklist() {
     auth6.state = "OR";
     auth6.zip = "97333";
     database.push_back(auth6);
+    
+    Location auth7;
+    auth7.name = "Philomath Police Department";
+    auth7.telephone = "(541) 929-6911";
+    auth7.streetAddress = "1010 Applegate St";
+    auth7.city = "Philomath";
+    auth7.state = "OR";
+    auth7.zip = "97370";
+    database.push_back(auth7);
+
+    Location auth8;
+    auth8.name = "Knope Police Center";
+    auth8.telephone = "(206) 504 - 8281";
+    auth8.streetAddress = "9629 6th Street West";
+    auth8.city = "Lincoln City";
+    auth8.state = "OR";
+    auth8.zip = "97330";
+    database.push_back(auth8);
+
+    Location auth9;
+    auth9.name = "Granger Ecology Center";
+    auth9.telephone = "(202) 555 - 0182";
+    auth9.streetAddress = "2267 Windsor Court";
+    auth9.city = "Powder Springs";
+    auth9.state = "OR";
+    auth9.zip = "97330";
+    database.push_back(auth9);
+
+    Location auth10;
+    auth10.name = "Vans Police Office";
+    auth10.telephone = "(208) 555 - 0120";
+    auth10.streetAddress = "3034 Willow Avenue";
+    auth10.city = "Green Cove";
+    auth10.state = "OR";
+    auth10.zip = "97330";
+    database.push_back(auth10);
+
+    Location auth11;
+    auth11.name = "Zoom Environmental Protectors";
+    auth11.telephone = "(208) 012 - 0145";
+    auth11.streetAddress = "7577 5th Street East";
+    auth11.city = "Smithtown";
+    auth11.state = "OR";
+    auth11.zip = "97333";
+    database.push_back(auth11);
+
+    Location auth12;
+    auth12.name = "City of Ogden Police Center";
+    auth12.telephone = "(458) 204 - 9294";
+    auth12.streetAddress = "6492 Pheasant Run";
+    auth12.city = "Ogden";
+    auth12.state = "OR";
+    auth12.zip = "97333";
+    database.push_back(auth12);
+
+    Location auth13;
+    auth13.name = "Oregon Public Utilities";
+    auth13.telephone = "(541) 243 - 9664";
+    auth13.streetAddress = "6604 Union Street";
+    auth13.city = "Fairfax";
+    auth13.state = "OR";
+    auth13.zip = "97331";
+    database.push_back(auth13);
+
+    Location auth14;
+    auth14.name = "Marine Defenders";
+    auth14.telephone = "(541) 723 - 0321";
+    auth14.streetAddress = "4501 Sycamore Lane";
+    auth14.city = "Matthews";
+    auth14.state = "OR";
+    auth14.zip = "97339";
+    database.push_back(auth14);
+
+    Location auth15;
+    auth15.name = "City of Elk Grove";
+    auth15.telephone = "(541) 456 - 8313";
+    auth15.streetAddress = "4580 Olive Street";
+    auth15.city = "Elk Grove";
+    auth15.state = "OR";
+    auth15.zip = "97339";
+    database.push_back(auth15);
 	
 	
 	return database;
