@@ -3,16 +3,14 @@ Oil disposal.
 
 Instructions:
 1. Ensure the following files are in the current directory:
-	a. authority.cpp
-	b. directions.cpp
-	c. functions.cpp
-	d. functions.h
-	e. Location.cpp
-	f. Location.h
-	g. Makefile
-	h. ProjectB.cpp
-	i. turns.h
-	j. UnitTests.cpp
+	a. functions.cpp
+	b. functions.h
+	c. Location.cpp
+	d. Location.h
+	e. Makefile
+	f. ProjectB.cpp
+	g. turns.h
+	h. UnitTests.cpp
 
 2. Enter "make" to compile
 
