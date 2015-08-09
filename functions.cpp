@@ -79,6 +79,132 @@ void print_results(Location* from, vector<Location> matches) {
 	}
 }
 
+void turnturn(int locationnumber,int distance) {
+	int dcount;
+	int lr;
+	int used[100];
+	int dlist[100];
+	int num;
+	srand(time(NULL));
+
+    	locationnumber = rand()%(25-2) +2;
+	cout << "Please enter distance \n";
+	cin >> distance;
+	dcount=distancemod(distance);
+	//50 50 chance of left or right
+	int x;
+	int y;
+	int unique=0;
+	lr=rand()%2+25;
+	num=rand()%43+28; //random directions number
+	for(x=0;x<dcount;x++) {
+		num=rand()%43+28;
+		while(unique<x) { 
+			unique=0;
+			num=rand()%43+28;
+			for (y=0;y<x;y++) {
+				if(num!=used[y]) {
+					unique++;
+				}
+			}
+		}
+		dlist[x]=num;
+		used[x]=num;
+		unique=0;
+	}
+	
+	dlist[x]=locationnumber; //second to last direction turns on street where location actually is
+	x++;
+	dlist[x]=lr; //says left or right
+	
+	printdirection(dlist,x);
+	
+	
+}
+
+void printdirection(int dlist[],int x)
+{
+	string directions[] = {" ","Commercial St","Lancaster Dr","Commercial St","Commercial St","Turner Rd","North River Road","Salem-Dallas Hwy","Lancaster Dr","Lancaster Dr","South East Deer Park Dr","Lancaster Dr","Montgomery St","Merge right onto Santiam Hwy","9th street","Walnut Blvd","Coffin Butte Rd","south Third St","East Ellendale Ave","Merge left onto Kings Valley Hwy","South Santiam Hwy","South Santiam Hwy","South Santiam Hwy","North First Street","Main St","Destination will be on your left","Destination will be on your right","North Maple Ave","Market St","Stoneway Dr","Hwy 22","Plaza St","Eola Dr","Moores Way","Senate St","Doaks Ferry Rd","Belverde St","Gehlar Rd","Celveland Ave","Eisenhower Dr","Dalke Ridge Dr","Crestbrook Dr","Brekenridge St","Horse Clover Dr","Rainsong Dr","Emerald Dr","Grice Hilld Rd","Orchard Heights Rd","Eagle Crest Rd","Timothy Dr","Lockhart Dr","Oakcrest Dr","Abbey Road","Smith Street","Abby Wood Ct","Adams Ridge","Albert Dr","Aldercrroft Heights","Almond Hill Ct","Altura Vista","Bean Ave","Beardem Dr","Beckwith Rd","Becky Ln","Beethoven Ln","Belblossom Dr","Clearview Dr","Comanche Trail","Comstock Mill Rd","Coporate Limit","Corcel Dr","Cove Lane Rd","Deerfield Rd","Del Monte Way","Delaware Trail","Dittos Ln","Englewood Ave","El Porton","Evergreen Ln","Farvue Ln","Fawmdale Dr","Fairview Plaza","Gillete Dr"};
+	int q=0;
+	string entry="";
+	cout << "Now printing directions. Enter any character except q to print \n";
+	cout << "next direction. To quit guidance press q \n";
+	while (q<=x&&(entry.length() != 1 || entry[0]!='q')){
+
+		string ways=leftorright();
+		if (dlist[q]==26||dlist[q]==25)
+		{
+			cout << directions[dlist[q]]<< " ";
+		}
+		else
+		{
+			cout << ways << directions[dlist[q]]<< " ";
+		}
+		getline(cin, entry);
+		cout<< endl;
+		q++;
+	}
+}
+
+string leftorright()
+{
+	int temp=rand()%2;
+	string temp2;
+	if (temp==0)
+	{
+		temp2="Turn left onto ";
+	}
+	else
+	{
+		temp2="Turn right onto ";
+	}
+	return temp2;
+}
+//sets number of directions which is based off distance to target
+int distancemod(int distance)
+{
+	int range;
+	int floor;
+	if (distance<5) {
+		range=4;
+		floor=3;
+	} else if (distance<15) {
+		range=5;
+		floor=4;
+	} else if (distance<25) {
+		range=6;
+		floor=5;
+	} else if (distance<35) {
+		range=8;
+		floor=6;
+	} else {
+		range=10;
+		floor=6;
+	}
+	
+	//enters in how many directions will be used
+	return rand()%range+1+floor;
+}
+
+void checklist() {
+    int step = 0, total_steps = 7;
+    string entry = "";
+    string check_list[] = { "1. Be sure oil is cool before transferring to empty jugs.",
+        "2. Carefully transfer oil from oil drain catch pan to empty jug.",
+        "3. Screw the cap onto the jug and make absolutely sure it is on tight.",
+        "4. For extra security, you can slip the jug into a plastic trash bag and twist that closed with a tie-twist.",
+        "5. Get an old cardboard box, put a layer of newspaper down on the bottom. Put the jug in there.",
+        "6. The ideal area to place the oil while driving is on the passenger floor.\n Find a flat and secure area for driving",
+        "7. Bring to the correct oil disposal location"};
+    cout << "Enter any character to advance on the checklist, enter q at any time to quit\n";
+	while (step < total_steps &&(entry.length() != 1 || entry[0]!='q')){
+		cout << check_list[step]<< " ";
+		getline(cin, entry);
+		cout<< endl;
+		step++;
+	}
+}
+
 vector<Location> createDatabase() {
     vector<Location> database;
 
@@ -311,141 +437,10 @@ vector<Location> createDatabase() {
     return database;
 }
 
-void turnturn(int locationnumber,int distance) {
-	int dcount;
-	int lr;
-	int used[100];
-	int dlist[100];
-	int num;
-	srand(time(NULL));
-
-	cout << "Please enter location number \n";
-	cin >> locationnumber;
-	cout << "Please enter distance \n";
-	cin >> distance;
-	dcount=distancemod(distance);
-	//50 50 chance of left or right
-	int x;
-	int y;
-	int unique=0;
-	lr=rand()%2+25;
-	num=rand()%43+28; //random directions number
-	for(x=0;x<dcount;x++) {
-		num=rand()%43+28;
-		while(unique<x) { 
-			unique=0;
-			num=rand()%43+28;
-			for (y=0;y<x;y++) {
-				if(num!=used[y]) {
-					unique++;
-				}
-			}
-		}
-		dlist[x]=num;
-		used[x]=num;
-		unique=0;
-	}
-	
-	dlist[x]=locationnumber; //second to last direction turns on street where location actually is
-	x++;
-	dlist[x]=lr; //says left or right
-	
-	printdirection(dlist,x);
-	
-	
-}
-
-void printdirection(int dlist[],int x)
-{
-	string directions[] = {" ","Commercial St","Lancaster Dr","Commercial St","Commercial St","Turner Rd","North River Road","Salem-Dallas Hwy","Lancaster Dr","Lancaster Dr","South East Deer Park Dr","Lancaster Dr","Montgomery St","Merge right onto Santiam Hwy","9th street","Walnut Blvd","Coffin Butte Rd","south Third St","East Ellendale Ave","Merge left onto Kings Valley Hwy","South Santiam Hwy","South Santiam Hwy","South Santiam Hwy","North First Street","Main St","Destination will be on your left","Destination will be on your right","North Maple Ave","Market St","Stoneway Dr","Hwy 22","Plaza St","Eola Dr","Moores Way","Senate St","Doaks Ferry Rd","Belverde St","Gehlar Rd","Celveland Ave","Eisenhower Dr","Dalke Ridge Dr","Crestbrook Dr","Brekenridge St","Horse Clover Dr","Rainsong Dr","Emerald Dr","Grice Hilld Rd","Orchard Heights Rd","Eagle Crest Rd","Timothy Dr","Lockhart Dr","Oakcrest Dr","Abbey Road","Smith Street","Abby Wood Ct","Adams Ridge","Albert Dr","Aldercrroft Heights","Almond Hill Ct","Altura Vista","Bean Ave","Beardem Dr","Beckwith Rd","Becky Ln","Beethoven Ln","Belblossom Dr","Clearview Dr","Comanche Trail","Comstock Mill Rd","Coporate Limit","Corcel Dr","Cove Lane Rd","Deerfield Rd","Del Monte Way","Delaware Trail","Dittos Ln","Englewood Ave","El Porton","Evergreen Ln","Farvue Ln","Fawmdale Dr","Fairview Plaza","Gillete Dr"};
-	int q=0;
-	char entry='c';
-	cout << "Now printing directions press any key button except q to print \n";
-	cout << "next direction to quit guidance press q \n";
-	while (q<=x&&entry!='q'){
-		
-		string ways=leftorright();
-		if (dlist[q]==26||dlist[q]==25)
-		{
-			cout << directions[dlist[q]]<< " ";
-		}
-		else
-		{
-			cout << ways << directions[dlist[q]]<< " ";
-		}
-		cin >> entry;
-		cout<< endl;
-		q++;
-	}
-}
-
-string leftorright()
-{
-	int temp=rand()%2;
-	string temp2;
-	if (temp==0)
-	{
-		temp2="Turn left onto ";
-	}
-	else
-	{
-		temp2="Turn right onto ";
-	}
-	return temp2;
-}
-//sets number of directions which is based off distance to target
-int distancemod(int distance)
-{
-	int range;
-	int floor;
-	if (distance<5) {
-		range=4;
-		floor=3;
-	} else if (distance<15) {
-		range=5;
-		floor=4;
-	} else if (distance<25) {
-		range=6;
-		floor=5;
-	} else if (distance<35) {
-		range=8;
-		floor=6;
-	} else {
-		range=10;
-		floor=6;
-	}
-	
-	//enters in how many directions will be used
-	return rand()%range+1+floor;
-}
-
-void checklist() {
-    int step = 0, total_steps = 7;
-    char entry;
-    string check_list[] = { "1. Be sure oil is cool before transferring to empty jugs.",
-        "2. Carefully transfer oil from oil drain catch pan to empty jug.",
-        "3. Screw the cap onto the jug and make absolutely sure it is on tight.",
-        "4. For extra security, you can slip the jug into a plastic trash bag and twist that closed with a tie-twist.",
-        "5. Get an old cardboard box, put a layer of newspaper down on the bottom. Put the jug in there.",
-        "6. The ideal area to place the oil while driving is on the passenger floor.\n Find a flat and secure area for driving",
-        "7. Bring to the correct oil disposal location"};
-    cout << "Press any key to advance onto the checklist, hit q at any time to quit\n";
-	while (step < total_steps &&entry!='q'){
-		cout << check_list[step]<< " ";
-		cin >> entry;
-		cout<< endl;
-		step++;
-	}
-}
-
-
-
-
-
  vector<Location> createDatabase2() {
-    vector<Location> database;
+   vector<Location> database;
  
- Location auth1;
+ 	Location auth1;
     auth1.name = "Portland EPA";
     auth1.telephone = "(503) 326-3250";
     auth1.streetAddress = "805 SW Broadway #500";
@@ -580,7 +575,6 @@ void checklist() {
     auth15.state = "OR";
     auth15.zip = "97339";
     database.push_back(auth15);
-	
 	
 	return database;
 }
