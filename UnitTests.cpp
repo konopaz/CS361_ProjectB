@@ -11,6 +11,7 @@ bool testLocationDistance();
 bool testFindNearby();
 bool testunique();
 bool testdistancemod();
+bool testAuthNearby(); 
 
 int main() {
 
@@ -24,6 +25,7 @@ int main() {
   success = testFindNearby() && success;
   success = testunique() && success;
   success = testdistancemod() && success;
+  success = testAuthNearby() && success; 
 
   cout << endl;
   if (success) {
@@ -218,4 +220,46 @@ bool testunique()
 	return success;
 }
 	
-	
+bool testAuthNearby(){
+
+    bool success = true;
+
+    cout << "Testing find_nearby()... ";
+
+    Location * loc = new Location();
+    loc->name = "Test Name";
+    loc->streetAddress = "1234 Some St";
+    loc->city = "Acme Falls";
+    loc->state = "CA";
+    loc->zip = "123456";
+
+    vector<Location> database = createDatabase2();
+    vector<Location> matching = find_nearby(loc, database, 100);
+
+    if(matching[0].streetAddress != "1200 6th Ave"){
+        success = false;
+        cout << endl << "Element 1 of 5 does not match";
+    }
+    if(matching[1].streetAddress != "61 Forsyth Street"){
+        success = false;
+        cout << endl << "Element 2 of 5 does not match";
+    }
+    if(matching[2].streetAddress != "200 SW 35th St"){
+        success = false;
+        cout << endl << "Element 3 of 5 does not match";
+    }
+    if(matching[3].streetAddress != "4501 Sycamore Lane"){
+        success = false;
+        cout << endl << "Element 4 of 5 does not match";
+    }
+    if(matching[4].streetAddress != "805 SW Broadway #500"){
+        success = false;
+        cout << endl << "Element 5 of 5 does not match";
+    }
+
+    if(success){
+        cout << "good to go.";
+    }
+	cout << endl;
+    return success;
+}
