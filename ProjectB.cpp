@@ -19,10 +19,10 @@ int main() {
         cout << "Please choose a command: " << endl;
         cout << "1: Find nearby oil disposal locations" << endl;
         cout << "2: Go directly to the nearest oil disposal location" << endl;
-        //cout << "3: View Oil Disposal Checklist" << endl;
+        cout << "3: View Oil Disposal Checklist" << endl;
         cout << "4: View current location" << endl; 
         cout << "5: View EPA/Environmental Authorities" << endl;
-		cout << "6: Exit Application" << endl;
+	cout << "6: Exit Application" << endl;
         cout << "Your choice: ";
         cin >> choice;
         cout << endl; 
@@ -44,8 +44,9 @@ int main() {
                 break;
             case 4: 
                 cout << home->to_string()<< endl;
-			case 5:
-				unsigned int search_radius; 
+                break; 
+	case 5:
+		unsigned int search_radius; 
                 cout << "Search Radius: "; 
                 cin >> search_radius;  
                 vector<Location> matching = find_nearby(home, database2, search_radius);
