@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include "Location.h"
 #include "functions.h"
 
 using namespace std;
 
 int main() {
-    int choice;
+    string choice;
     vector<Location> database = createDatabase();
 	vector<Location> database2 = createDatabase2();
     cout << "Welcome to Oil Disposal Finder!" << endl;
@@ -22,12 +23,10 @@ int main() {
         cout << "1: Find nearby oil disposal locations" << endl;
         cout << "2: Go directly to the nearest oil disposal location" << endl;
         cout << "3: View Oil Disposal Checklist" << endl;
-        cout << "4: View current location" << endl; 
+        cout << "4: View current location" << endl;
         cout << "5: View EPA/Environmental Authorities" << endl;
-	cout << "6: Exit Application" << endl;
+        cout << "6: Exit Application" << endl;
         cout << "Your choice: ";
-        cin >> choice;
-        cout << endl; 
 
         //Loop for error checking input
         choice = "";
